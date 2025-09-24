@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Robo Race</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #348312, #39d876); /* Gradiente verde escuro para verde claro */
+            color: #000000; /* Preto */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px; /* Reduzido para um tamanho mais compacto */
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #04e76a; /* Branco */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #000000; /* Verde */
+            text-align: center;
+        }
+        label {
+            font-size: 16px;
+            color: #000000; /* Verde */
+            margin-top: 10px;
+            display: block;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        button {
+            width: 75%;
+            padding: 8px; /* Ajustado para menor altura */
+            margin-top: 8px;
+            border: 1px solid #348312; /* Verde */
+            border-radius: 4px;
+            font-size: 14px; /* Fonte um pouco menor */
+            color: #000000; /* Preto */
+            align-items: center;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus {
+            border-color: #348312;
+            outline: none;  
+        }
+        button {
+            background-color: #348312; /* Verde */
+            color: #000000; /* Branco */
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 16px; /* Fonte do botão ajustada */
+        }
+        button:hover {
+            background-color: #2c6a10; /* Um verde mais escuro */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Cadastro Robo Race</h1>
+        <form action="#" method="post">
+            <label for="nome">Nome da Escola:</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="endereco">Endereço:</label>
+            <input type="text" id="endereco" name="endereco" required>
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" name="telefone" required>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+
+</body>
+</html>
