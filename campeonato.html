@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Campeonato RoboRace</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f9f5;
+      margin: 0;
+      padding: 20px;
+      color: #000;
+    }
+
+    h1 {
+      text-align: center;
+      color: #348312; 
+    }
+
+    .search-box {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .search-box input {
+      padding: 10px;
+      width: 250px;
+      border: 2px solid #348312; 
+      border-radius: 6px;
+      outline: none;
+    }
+
+    .search-box input:focus {
+      border-color: #2a650e; 
+    }
+
+    .top5 {
+      background: #fff; 
+      padding: 15px;
+      border-radius: 8px;
+      border: 2px solid #348312; 
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      color: #000; 
+    }
+
+    .top5 h2 {
+      margin-top: 0;
+      color: #348312; 
+    }
+
+    .top5 ol {
+      padding-left: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff; 
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      color: #000; 
+    }
+
+    th {
+      background: #348312; 
+      color: #fff; 
+    }
+
+    tr:hover {
+      background: #eaf6ea; 
+    }
+  </style>
+</head>
+<body>
+  <h1>Campeonato RoboRace 🏆</h1>
+
+
+  <div class="top5">
+    <h2>Top 5 Escolas</h2>
+    <ol>
+      <li>Escola Alfa</li>
+      <li>Colégio Beta</li>
+      <li>Instituto Gama</li>
+      <li>Escola Delta</li>
+      <li>Colégio Ômega</li>
+    </ol>
+  </div>
+
+ 
+  <div class="search-box">
+    <input type="text" id="searchInput" onkeyup="filtrarTabela()" placeholder="🔍 Pesquisar escola...">
+  </div>
+
+
+  <table id="tabela">
+    <thead>
+      <tr>
+        <th>Posição</th>
+        <th>Escola</th>
+        <th>Pontos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Escola Alfa</td><td>120</td></tr>
+      <tr><td>2</td><td>Colégio Beta</td><td>110</td></tr>
+      <tr><td>3</td><td>Instituto Gama</td><td>95</td></tr>
+      <tr><td>4</td><td>Escola Delta</td><td>90</td></tr>
+      <tr><td>5</td><td>Colégio Ômega</td><td>85</td></tr>
+      <tr><td>6</td><td>Escola Sigma</td><td>80</td></tr>
+      <tr><td>7</td><td>Escola Teta</td><td>75</td></tr>
+      <tr><td>8</td><td>Colégio Zeta</td><td>70</td></tr>
+    </tbody>
+  </table>
+
+  <script>
+    function filtrarTabela() {
+      const input = document.getElementById("searchInput");
+      const filtro = input.value.toLowerCase();
+      const tabela = document.getElementById("tabela");
+      const linhas = tabela.getElementsByTagName("tr");
+
+      for (let i = 1; i < linhas.length; i++) {
+        let coluna = linhas[i].getElementsByTagName("td")[1];
+        if (coluna) {
+          let texto = coluna.textContent || coluna.innerText;
+          linhas[i].style.display = texto.toLowerCase().includes(filtro) ? "" : "none";
+        }
+      }
+    }
+  </script>
+</body>
+</html>
