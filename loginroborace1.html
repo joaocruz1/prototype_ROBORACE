@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Tela de Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(#348312, #0000);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      width: 350px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input {
+      display: block;          /* cada input em linha separada */
+      width: 250px;            /* largura fixa */
+      margin: 10px auto;       /* centraliza */
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    input:focus {
+      border-color: #348312;
+      box-shadow: 0 0 5px #348312;
+    }
+
+    button {
+      display: block;
+      width: 250px;
+      padding: 10px;
+      margin: 15px auto;
+      background: #348312;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #2a610d;
+    }
+
+    p {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #666;
+    }
+
+    a {
+      color: #348312;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Formulário de Login -->
+    <div id="loginForm">
+      <h2>Login ROBORACE</h2>
+      <input type="text" id="user" placeholder="Nome escola" required>
+      <input type="password" id="pass" placeholder="Senha" required>
+      <button onclick="fazerLogin()">Entrar</button>
+      <p><a onclick="mostrarReset()">Esqueci minha senha</a></p>
+    </div>
+
+    <!-- Formulário de Reset -->
+    <div id="resetForm" class="hidden">
+      <h2>Redefinir Senha</h2>
+      <input type="text" id="newUser" placeholder="Usuário" required>
+      <input type="password" id="newPass" placeholder="Nova Senha" required>
+      <button onclick="cadastrarSenha()">Salvar Nova Senha</button>
+      <p><a onclick="mostrarLogin()">Voltar ao Login</a></p>
+    </div>
+  </div>
+
+  <script>
+    let usuario = "admin";
+    let senha = "1234";
+
+    function fazerLogin() {
+      const u = document.getElementById("user").value;
+      const p = document.getElementById("pass").value;
+
+      if (u === usuario && p === senha) {
+        alert("✅ Login realizado com sucesso!");
+      } else {
+        alert("❌ Usuário ou senha incorretos!");
+      }
+    }
+
+    function mostrarReset() {
+      document.getElementById("loginForm").classList.add("hidden");
+      document.getElementById("resetForm").classList.remove("hidden");
+    }
+
+    function mostrarLogin() {
+      document.getElementById("resetForm").classList.add("hidden");
+      document.getElementById("loginForm").classList.remove("hidden");
+    }
+
+    function cadastrarSenha() {
+      usuario = document.getElementById("newUser").value;
+      senha = document.getElementById("newPass").value;
+      alert("✅ Nova senha cadastrada com sucesso!");
+      mostrarLogin();
+    }
+  </script>
+</body>
+</html>
