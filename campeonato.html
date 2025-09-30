@@ -68,6 +68,31 @@
       z-index: 1;
     }
 
+    .header-nav {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -346,6 +371,11 @@
     <div class="header">
       <h1>🏆 Campeonato RoboRace 🏆</h1>
       <p>Competição de Robótica Educacional - Temporada 2024</p>
+      <div class="header-nav">
+        <a href="loginroborace1.html" class="nav-link">🔑 Login</a>
+        <a href="cadastro.html" class="nav-link">📝 Cadastrar</a>
+        <a href="admin.html" class="nav-link">⚙️ Admin</a>
+      </div>
     </div>
 
     <div class="stats-grid">

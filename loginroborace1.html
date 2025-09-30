@@ -2,69 +2,175 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Tela de Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login RoboRace</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(#348312, #0000);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #348312 0%, #2a650e 50%, #39d876 100%);
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: float 8s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(180deg); }
     }
 
     .container {
-      background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      width: 350px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.2);
+      width: 400px;
+      max-width: 90vw;
       text-align: center;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #348312, #39d876);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: bold;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
     }
 
     h2 {
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       color: #333;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
     }
 
     input {
-      display: block;          /* cada input em linha separada */
-      width: 250px;            /* largura fixa */
-      margin: 10px auto;       /* centraliza */
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      display: block;
+      width: 100%;
+      padding: 15px 20px;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
       outline: none;
-      font-size: 14px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.9);
     }
 
     input:focus {
       border-color: #348312;
-      box-shadow: 0 0 5px #348312;
+      box-shadow: 0 0 20px rgba(52, 131, 18, 0.3);
+      transform: scale(1.02);
+    }
+
+    input::placeholder {
+      color: #999;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #348312;
+      font-size: 1.2rem;
+    }
+
+    .input-with-icon {
+      padding-left: 50px;
     }
 
     button {
       display: block;
-      width: 250px;
-      padding: 10px;
-      margin: 15px auto;
-      background: #348312;
+      width: 100%;
+      padding: 15px;
+      margin: 25px 0;
+      background: linear-gradient(135deg, #348312 0%, #2a650e 100%);
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       color: white;
       font-size: 16px;
+      font-weight: 600;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    button:hover::before {
+      left: 100%;
     }
 
     button:hover {
-      background: #2a610d;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(52, 131, 18, 0.3);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .nav-links {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     p {
-      margin-top: 15px;
-      font-size: 13px;
+      margin: 0;
+      font-size: 14px;
       color: #666;
     }
 
@@ -72,35 +178,99 @@
       color: #348312;
       text-decoration: none;
       cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 5px 10px;
+      border-radius: 6px;
     }
 
     a:hover {
-      text-decoration: underline;
+      background: rgba(52, 131, 18, 0.1);
+      text-decoration: none;
     }
 
     .hidden {
       display: none;
     }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+      margin-top: 15px;
+    }
+
+    .btn-secondary:hover {
+      box-shadow: 0 10px 25px rgba(108, 117, 125, 0.3);
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 30px 20px;
+        margin: 20px;
+      }
+      
+      .logo {
+        font-size: 2rem;
+      }
+      
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container fade-in">
     <!-- Formulário de Login -->
     <div id="loginForm">
-      <h2>Login ROBORACE</h2>
-      <input type="text" id="user" placeholder="Nome escola" required>
-      <input type="password" id="pass" placeholder="Senha" required>
-      <button onclick="fazerLogin()">Entrar</button>
-      <p><a onclick="mostrarReset()">Esqueci minha senha</a></p>
+      <div class="logo">🤖 RoboRace</div>
+      <p class="subtitle">Sistema de Competição de Robótica</p>
+      <h2>Entrar</h2>
+      
+      <div class="form-group">
+        <input type="text" id="user" placeholder="Nome da escola" required class="input-with-icon">
+        <span class="input-icon">🏫</span>
+      </div>
+      
+      <div class="form-group">
+        <input type="password" id="pass" placeholder="Senha" required class="input-with-icon">
+        <span class="input-icon">🔒</span>
+      </div>
+      
+      <button onclick="fazerLogin()">🚀 Entrar</button>
+      
+      <div class="nav-links">
+        <a onclick="mostrarReset()">🔑 Esqueci minha senha</a>
+        <a href="cadastro.html">📝 Cadastrar Escola</a>
+      </div>
     </div>
 
     <!-- Formulário de Reset -->
-    <div id="resetForm" class="hidden">
+    <div id="resetForm" class="hidden fade-in">
+      <div class="logo">🤖 RoboRace</div>
+      <p class="subtitle">Sistema de Competição de Robótica</p>
       <h2>Redefinir Senha</h2>
-      <input type="text" id="newUser" placeholder="Usuário" required>
-      <input type="password" id="newPass" placeholder="Nova Senha" required>
-      <button onclick="cadastrarSenha()">Salvar Nova Senha</button>
-      <p><a onclick="mostrarLogin()">Voltar ao Login</a></p>
+      
+      <div class="form-group">
+        <input type="text" id="newUser" placeholder="Usuário" required class="input-with-icon">
+        <span class="input-icon">👤</span>
+      </div>
+      
+      <div class="form-group">
+        <input type="password" id="newPass" placeholder="Nova Senha" required class="input-with-icon">
+        <span class="input-icon">🔒</span>
+      </div>
+      
+      <button onclick="cadastrarSenha()">💾 Salvar Nova Senha</button>
+      <button class="btn-secondary" onclick="mostrarLogin()">⬅️ Voltar ao Login</button>
     </div>
   </div>
 
@@ -113,28 +283,127 @@
       const p = document.getElementById("pass").value;
 
       if (u === usuario && p === senha) {
-        alert("✅ Login realizado com sucesso!");
+        showNotification("✅ Login realizado com sucesso!", "success");
+        setTimeout(() => {
+          window.location.href = "admin.html";
+        }, 1500);
       } else {
-        alert("❌ Usuário ou senha incorretos!");
+        showNotification("❌ Usuário ou senha incorretos!", "error");
+        // Animação de erro
+        document.getElementById("user").style.borderColor = "#dc3545";
+        document.getElementById("pass").style.borderColor = "#dc3545";
+        setTimeout(() => {
+          document.getElementById("user").style.borderColor = "#e0e0e0";
+          document.getElementById("pass").style.borderColor = "#e0e0e0";
+        }, 2000);
       }
     }
 
     function mostrarReset() {
       document.getElementById("loginForm").classList.add("hidden");
       document.getElementById("resetForm").classList.remove("hidden");
+      document.getElementById("resetForm").classList.add("fade-in");
     }
 
     function mostrarLogin() {
       document.getElementById("resetForm").classList.add("hidden");
       document.getElementById("loginForm").classList.remove("hidden");
+      document.getElementById("loginForm").classList.add("fade-in");
     }
 
     function cadastrarSenha() {
-      usuario = document.getElementById("newUser").value;
-      senha = document.getElementById("newPass").value;
-      alert("✅ Nova senha cadastrada com sucesso!");
-      mostrarLogin();
+      const newUser = document.getElementById("newUser").value;
+      const newPass = document.getElementById("newPass").value;
+      
+      if (!newUser || !newPass) {
+        showNotification("❌ Preencha todos os campos!", "error");
+        return;
+      }
+      
+      usuario = newUser;
+      senha = newPass;
+      showNotification("✅ Nova senha cadastrada com sucesso!", "success");
+      setTimeout(() => {
+        mostrarLogin();
+        document.getElementById("newUser").value = "";
+        document.getElementById("newPass").value = "";
+      }, 1500);
     }
+
+    function showNotification(message, type) {
+      // Remove notificação anterior se existir
+      const existingNotification = document.querySelector('.notification');
+      if (existingNotification) {
+        existingNotification.remove();
+      }
+
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      notification.textContent = message;
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 20px;
+        border-radius: 10px;
+        color: white;
+        font-weight: 600;
+        z-index: 1000;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      `;
+
+      if (type === 'success') {
+        notification.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+      } else if (type === 'error') {
+        notification.style.background = 'linear-gradient(135deg, #dc3545, #fd7e14)';
+      }
+
+      document.body.appendChild(notification);
+
+      // Animar entrada
+      setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+      }, 100);
+
+      // Remover após 3 segundos
+      setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.remove();
+          }
+        }, 300);
+      }, 3000);
+    }
+
+    // Adicionar funcionalidade de Enter nos campos
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('user').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          document.getElementById('pass').focus();
+        }
+      });
+
+      document.getElementById('pass').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          fazerLogin();
+        }
+      });
+
+      document.getElementById('newUser').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          document.getElementById('newPass').focus();
+        }
+      });
+
+      document.getElementById('newPass').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          cadastrarSenha();
+        }
+      });
+    });
   </script>
 </body>
 </html>
